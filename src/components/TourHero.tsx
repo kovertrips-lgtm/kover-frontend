@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Star, MapPin, Calendar, Tag } from "lucide-react";
 import type { TourHeroProps } from "@/types/tour";
 
@@ -17,10 +18,13 @@ const TourHero = ({
 }: TourHeroProps) => {
   return (
     <section className="relative w-full h-[80vh] min-h-[500px] md:min-h-[600px] overflow-hidden">
-      <img
+      <Image
         src={heroImage}
         alt={heroImageAlt}
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
 

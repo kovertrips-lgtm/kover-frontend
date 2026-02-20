@@ -1,4 +1,5 @@
 import { client } from "@/sanity/client";
+import Image from "next/image";
 import Link from "next/link";
 
 export const revalidate = 0;
@@ -42,10 +43,12 @@ export default async function Home() {
                 {/* Фото */}
                 <div className="aspect-[4/3] w-full overflow-hidden">
                   {tour.mainImageUrl ? (
-                    <img
+                    <Image
                       src={tour.mainImageUrl}
                       alt={tour.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
                     <div className="w-full h-full bg-muted flex items-center justify-center text-4xl">🌍</div>

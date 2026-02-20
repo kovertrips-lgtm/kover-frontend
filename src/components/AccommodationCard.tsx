@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Star, Bed } from "lucide-react";
 import type { AccommodationCardProps } from "@/types/tour";
 
@@ -14,12 +15,15 @@ const AccommodationCard = ({
     <section className="py-8 w-full max-w-4xl mx-auto">
       <h2 className="font-display text-2xl font-bold mb-6 text-foreground">{heading}</h2>
       <article className="rounded-xl overflow-hidden border border-border bg-card">
-        <img
-          src={image}
-          alt={imageAlt}
-          loading="lazy"
-          className="w-full h-64 object-cover"
-        />
+        <div className="relative w-full h-64">
+          <Image
+            src={image}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 768px) 100vw, 800px"
+            className="object-cover"
+          />
+        </div>
         <div className="p-6">
           <h3 className="font-display text-xl font-semibold mb-2 text-foreground">{name}</h3>
           <div className="flex items-center gap-4 mb-4">

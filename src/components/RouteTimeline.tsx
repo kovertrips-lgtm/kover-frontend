@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import type { RouteTimelineProps } from "@/types/tour";
 
@@ -33,12 +34,15 @@ const RouteTimeline = ({ heading, days }: RouteTimelineProps) => {
 
             {openDay === i && (
               <div className="px-4 pb-4 flex flex-col md:flex-row gap-4">
-                <img
-                  src={day.image}
-                  alt={day.title}
-                  loading="lazy"
-                  className="w-full md:w-48 h-36 object-cover rounded-lg flex-shrink-0"
-                />
+                <div className="relative w-full md:w-48 h-36 flex-shrink-0 rounded-lg overflow-hidden">
+                  <Image
+                    src={day.image}
+                    alt={day.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 192px"
+                    className="object-cover"
+                  />
+                </div>
                 <p className="text-foreground/80 text-sm leading-relaxed">
                   {day.description}
                 </p>
