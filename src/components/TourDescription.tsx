@@ -10,7 +10,7 @@ const TourDescription = ({
     <section className="py-8 w-full max-w-4xl mx-auto">
       <h2 className="font-display text-2xl font-bold mb-6 text-foreground">{heading}</h2>
       <div className="space-y-4 text-foreground/85 leading-relaxed">
-        <p className="text-lg font-light italic text-foreground/70">{introText}</p>
+        <p className="text-base md:text-lg font-sans text-foreground/70 border-l-4 border-primary/30 pl-4">{introText}</p>
         <p>{bodyText}</p>
       </div>
 
