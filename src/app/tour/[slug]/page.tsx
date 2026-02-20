@@ -32,9 +32,29 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     const { slug } = await params;
     const tour = await client.fetch(TOUR_QUERY, { slug });
     if (!tour) return { title: 'Тур не найден' };
+
+    const description = tour.introText
+        || `${tour.title} — ${tour.duration || ''} ${tour.location ? 'в ' + tour.location : ''}. Забронируйте тур с KOVER Travel.`;
+
     return {
         title: tour.title,
-        description: `Отправляйтесь в ${tour.title} вместе с KOVER.travel`,
+        description,
+        openGraph: {
+            title: tour.title,
+            description,
+            type: "article",
+            locale: "ru_RU",
+            siteName: "KOVER Travel",
+            ...(tour.mainImageUrl && {
+                images: [{ url: tour.mainImageUrl, width: 1200, height: 630, alt: tour.title }],
+            }),
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: tour.title,
+            description,
+            ...(tour.mainImageUrl && { images: [tour.mainImageUrl] }),
+        },
     };
 }
 
